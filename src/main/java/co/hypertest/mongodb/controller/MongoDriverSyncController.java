@@ -469,7 +469,9 @@ public class MongoDriverSyncController {
     // ------------------------------------------- FindIterable Methods -------------------------------------------    //
     @GetMapping("find")
     public Object find() {
-        return ResponseGenerator.generate(collection.find().into(new ArrayList<>()));
+        List<Document> docs = collection.find().into(new ArrayList<>());
+        Document first = docs.isEmpty() ? null : docs.get(0);
+        return ResponseGenerator.generate(first);
     }
 
     @GetMapping("find/first")
