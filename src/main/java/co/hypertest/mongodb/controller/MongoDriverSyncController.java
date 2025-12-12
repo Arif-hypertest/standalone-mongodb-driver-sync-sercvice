@@ -476,7 +476,8 @@ public class MongoDriverSyncController {
 
     @GetMapping("find/first")
     public Object findFirst() {
-        return ResponseGenerator.generate(collection.find().first());
+        Document result = collection.find().first();
+        return ResponseGenerator.generate(result);
     }
 
 
